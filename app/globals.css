@@ -1,26 +1,185 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
+/* -------------------------------------------------------
+   THEME TOKENS
+   - approche simple mais très "premium"
+   - facile à décliner si tu veux un light mode plus tard
+------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base */
+  --bg: 10 12 18; /* quasi noir bleuté */
+  --fg: 245 247 255; /* texte principal */
+  --muted: 160 170 190; /* texte secondaire */
+
+  /* Surfaces */
+  --panel: 16 20 30;
+  --panel-2: 12 16 26;
+  --border: 255 255 255;
+
+  /* Accent (tu pourras changer) */
+  --accent: 80 255 200; /* teal/green néon discret */
+  --accent-2: 120 170 255; /* bleu doux */
+
+  /* Effets */
+  --glow-opacity: 0.12;
+  --grid-opacity: 0.06;
+
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* -------------------------------------------------------
+   BASE
+------------------------------------------------------- */
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(var(--accent), 0.25);
+}
+
+/* Liens */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------
+   UTILITAIRES GLOBAUX (sans plugin)
+------------------------------------------------------- */
+
+/* Container mental-model */
+.container-pad {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Texte secondaire */
+.text-muted {
+  color: rgb(var(--muted));
+}
+
+/* Cartes */
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(var(--border), 0.06);
+  border-radius: 1.25rem; /* 2xl vibe */
+  backdrop-filter: blur(10px);
+}
+
+/* Boutons de base si besoin */
+.btn-base {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition;
+  border: 1px solid rgba(var(--border), 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+.btn-base:hover {
+  border-color: rgba(var(--accent), 0.35);
+  box-shadow: 0 0 0 1px rgba(var(--accent), 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.btn-accent {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--accent), 0.18),
+    rgba(var(--accent-2), 0.18)
+  );
+}
+
+/* -------------------------------------------------------
+   BACKGROUNDS "VIBE REF"
+   - Grid subtil + halos
+   - Tu appliques ces classes à un wrapper
+------------------------------------------------------- */
+
+/* Grid */
+.bg-grid {
+  position: relative;
+}
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image: linear-gradient(
+      rgba(255, 255, 255, var(--grid-opacity)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, var(--grid-opacity)) 1px,
+      transparent 1px
+    );
+  background-size: 32px 32px;
+  mask-image: radial-gradient(
+    circle at 50% 20%,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0.2) 45%,
+    transparent 70%
+  );
+}
+
+/* Halos */
+.bg-halos {
+  position: relative;
+}
+.bg-halos::after {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+
+  background: radial-gradient(
+      600px 400px at 20% 20%,
+      rgba(var(--accent), var(--glow-opacity)),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 500px at 80% 30%,
+      rgba(var(--accent-2), 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 700px at 50% 80%,
+      rgba(255, 255, 255, 0.04),
+      transparent 70%
+    );
+  filter: blur(6px);
+}
+
+/* -------------------------------------------------------
+   SCROLL
+------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* -------------------------------------------------------
+   PETITES ANIMS CSS UTILES
+------------------------------------------------------- */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.float-soft {
+  animation: float-soft 5s ease-in-out infinite;
 }
