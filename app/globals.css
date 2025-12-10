@@ -22,8 +22,12 @@
   --accent-2: 120 170 255; /* bleu doux */
 
   /* Effets */
-  --glow-opacity: 0.12;
   --grid-opacity: 0.06;
+
+  /* Halos plus visibles */
+  --glow-opacity: 0.22; /* avant 0.12 */
+  --glow-strong: 0.3; /* nouveau */
+  --glow-blur: 18px; /* nouveau */
 
   color-scheme: dark;
 }
@@ -34,6 +38,7 @@
 html,
 body {
   height: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -45,7 +50,7 @@ body {
 }
 
 ::selection {
-  background: rgba(var(--accent), 0.25);
+  background: rgb(var(--accent) / 0.25);
 }
 
 /* Liens */
@@ -72,30 +77,29 @@ a {
 .card {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.01)
+    rgb(255 255 255 / 0.04),
+    rgb(255 255 255 / 0.01)
   );
-  border: 1px solid rgba(var(--border), 0.06);
-  border-radius: 1.25rem; /* 2xl vibe */
-  backdrop-filter: blur(10px);
+  border: 1px solid rgb(var(--border) / 0.06);
 }
 
 /* Boutons de base si besoin */
 .btn-base {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition;
-  border: 1px solid rgba(var(--border), 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgb(var(--border) / 0.08);
+  background: rgb(255 255 255 / 0.04);
+  padding: 5px 10px;
 }
+
 .btn-base:hover {
-  border-color: rgba(var(--accent), 0.35);
-  box-shadow: 0 0 0 1px rgba(var(--accent), 0.12),
-    0 10px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgb(var(--accent) / 0.35);
+  box-shadow: 0 0 0 1px rgb(var(--accent) / 0.12), 0 10px 30px rgb(0 0 0 / 0.35);
 }
+
 .btn-accent {
   background: linear-gradient(
     90deg,
-    rgba(var(--accent), 0.18),
-    rgba(var(--accent-2), 0.18)
+    rgb(var(--accent) / 0.18),
+    rgb(var(--accent-2) / 0.18)
   );
 }
 
@@ -114,51 +118,103 @@ a {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 1; /* 👈 au-dessus des halos */
 
   background-image: linear-gradient(
-      rgba(255, 255, 255, var(--grid-opacity)) 1px,
+      rgb(255 255 255 / var(--grid-opacity)) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(255, 255, 255, var(--grid-opacity)) 1px,
+      rgb(255 255 255 / var(--grid-opacity)) 1px,
       transparent 1px
     );
+
   background-size: 32px 32px;
+
   mask-image: radial-gradient(
     circle at 50% 20%,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0.2) 45%,
+    rgb(0 0 0 / 1),
+    rgb(0 0 0 / 0.2) 45%,
     transparent 70%
   );
 }
 
-/* Halos */
+/* Halos + animation douce */
 .bg-halos {
   position: relative;
+  isolation: isolate; /* évite les effets bizarres de superposition */
+  overflow: clip;
 }
 .bg-halos::after {
   content: "";
   position: absolute;
-  inset: -10%;
+  inset: -12%;
   pointer-events: none;
+  z-index: 0; /* 👈 sous la grille */
 
-  background: radial-gradient(
-      600px 400px at 20% 20%,
-      rgba(var(--accent), var(--glow-opacity)),
+  background:
+    /* halos principaux */ radial-gradient(
+      520px 420px at 18% 22%,
+      rgb(var(--accent) / var(--glow-strong)),
+      transparent 62%
+    ),
+    radial-gradient(
+      620px 520px at 82% 18%,
+      rgb(var(--accent-2) / var(--glow-opacity)),
       transparent 60%
     ),
     radial-gradient(
-      700px 500px at 80% 30%,
-      rgba(var(--accent-2), 0.1),
-      transparent 60%
-    ),
-    radial-gradient(
-      900px 700px at 50% 80%,
-      rgba(255, 255, 255, 0.04),
+      820px 680px at 55% 85%,
+      rgb(255 255 255 / 0.06),
       transparent 70%
+    ),
+    radial-gradient(
+      460px 360px at 75% 75%,
+      rgb(var(--accent) / var(--glow-opacity)),
+      transparent 60%
+    ),
+      radial-gradient(
+        900px 700px at 10% 90%,
+        rgb(var(--accent-2) / 0.1),
+        transparent 65%
+      ),
+    radial-gradient(
+      700px 500px at 95% 60%,
+      rgb(var(--accent) / 0.08),
+      transparent 65%
     );
-  filter: blur(6px);
+
+  filter: blur(var(--glow-blur));
+  opacity: 1;
+  mix-blend-mode: screen;
+
+  animation: halos-pulse 10s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.bg-halos > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animations */
+@keyframes halos-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+/* Respect accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .bg-halos::after,
+  .bg-halos::before {
+    animation: none;
+  }
 }
 
 /* -------------------------------------------------------
