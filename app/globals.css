@@ -85,6 +85,14 @@ a {
 
 /* Boutons de base si besoin */
 .btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 150ms ease-out;
+
   border: 1px solid rgb(var(--border) / 0.08);
   background: rgb(255 255 255 / 0.04);
   padding: 5px 10px;
@@ -174,11 +182,11 @@ a {
       rgb(var(--accent) / var(--glow-opacity)),
       transparent 60%
     ),
-      radial-gradient(
-        900px 700px at 10% 90%,
-        rgb(var(--accent-2) / 0.1),
-        transparent 65%
-      ),
+    radial-gradient(
+      900px 700px at 10% 90%,
+      rgb(var(--accent-2) / 0.1),
+      transparent 65%
+    ),
     radial-gradient(
       700px 500px at 95% 60%,
       rgb(var(--accent) / 0.08),
@@ -238,4 +246,131 @@ html {
 }
 .float-soft {
   animation: float-soft 5s ease-in-out infinite;
+}
+
+/* -------------------------------------------------------
+   HERO ORBIT AVATAR
+------------------------------------------------------- */
+.orbit-avatar {
+  position: relative;
+  width: 176px; /* 44 * 4px */
+  height: 176px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .orbit-avatar {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Cercle central avec la photo */
+.orbit-avatar-inner {
+  position: relative;
+  width: 70%;
+  height: 70%;
+  margin: 15%;
+  border-radius: 9999px;
+  overflow: hidden;
+
+  /* petit contour + glow */
+  background: radial-gradient(
+      circle at 30% 0%,
+      rgb(var(--accent) / 0.2),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 70% 100%,
+      rgb(var(--accent-2) / 0.25),
+      transparent 60%
+    ),
+    rgb(8 10 16);
+  box-shadow: 0 0 0 1px rgb(var(--accent) / 0.35),
+    0 0 40px rgb(var(--accent) / 0.25);
+}
+
+/* Anneaux */
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  pointer-events: none;
+}
+
+.orbit-ring-1 {
+  inset: -4%;
+  border-image: conic-gradient(
+      from 0deg,
+      rgb(var(--accent) / 0),
+      rgb(var(--accent) / 0.7),
+      rgb(var(--accent-2) / 0.8),
+      rgb(var(--accent) / 0)
+    )
+    1;
+  animation: orbit-spin-slow 32s linear infinite;
+}
+
+.orbit-ring-2 {
+  inset: -10%;
+  border-image: conic-gradient(
+      from 120deg,
+      rgb(var(--accent-2) / 0),
+      rgb(var(--accent-2) / 0.7),
+      rgb(var(--accent) / 0.8),
+      rgb(var(--accent-2) / 0)
+    )
+    1;
+  opacity: 0.7;
+  animation: orbit-spin-slow 38s linear infinite reverse;
+}
+
+.orbit-ring-3 {
+  inset: -16%;
+  border-image: conic-gradient(
+      from 220deg,
+      rgb(var(--accent) / 0),
+      rgb(var(--accent) / 0.6),
+      rgb(var(--accent-2) / 0.7),
+      rgb(var(--accent) / 0)
+    )
+    1;
+  opacity: 0.6;
+  animation: orbit-spin-slow 46s linear infinite;
+}
+
+/* Points lumineux qui tournent avec l'anneau */
+.orbit-dot {
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  transform: translate(50%, -50%);
+  background: radial-gradient(
+    circle,
+    #fff,
+    rgb(var(--accent)) 55%,
+    transparent 70%
+  );
+  box-shadow: 0 0 10px rgb(255 255 255 / 0.9), 0 0 24px rgb(var(--accent) / 0.9);
+}
+
+/* Animation de rotation lente */
+@keyframes orbit-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Respect accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring {
+    animation: none;
+  }
 }

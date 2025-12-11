@@ -3,8 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Imane — Portfolio",
-  description: "Développeuse web. Next.js, TypeScript, Tailwind, AWS.",
+  title: "Imane Hornain",
+  description: "Ingénieur logiciel - Next.js, TypeScript, Tailwind, AWS.",
 };
 
 export default function RootLayout({
