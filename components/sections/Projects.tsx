@@ -3,7 +3,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 
 export function Projects() {
   return (
-    <section className="mt-16">
+    <section className="mt-22">
       <Container>
         <SectionTitle
           id="projects"

@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <PageShell>
       <Hero />
-      <Projects />
       <Stack />
+      <Projects />
       <Experience />
       <Contact />
     </PageShell>

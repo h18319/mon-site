@@ -59,11 +59,12 @@ export type Project = {
   year?: number;
 };
 
+export type StackCategory = "Frontend" | "Backend" | "DevOps" | "Others";
+
 export type StackItem = {
-  name: TechTag | string;
-  level?: 1 | 2 | 3 | 4 | 5; // auto-évaluation légère
-  category: "Frontend" | "Backend" | "Cloud" | "Tooling" | "Data" | "Design";
-  description?: string;
+  name: string;
+  category: StackCategory;
+  icon?: string;     // chemin vers l’icône dans /public
   highlight?: boolean;
 };
 

@@ -7,7 +7,7 @@ import { CONTACTS } from "@/data/contact";
 
 export function Contact() {
   return (
-    <section className="mt-16 pb-10">
+    <section className="mt-22 pb-10">
       <Container>
         <SectionTitle
           id="contact"
