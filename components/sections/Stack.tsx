@@ -16,7 +16,7 @@ const CATEGORIES = [
 
 export function Stack() {
   return (
-    <section className="mt-22">
+    <section className="mt-20">
       <Container>
         <SectionTitle
           id="stack"

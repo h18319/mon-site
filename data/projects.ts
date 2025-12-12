@@ -8,12 +8,13 @@ export const PROJECTS: Project[] = [
     category: "Dashboard",
     featured: true,
     cover: {
-      src: "/projects/transpresto/cover.png",
+      src: "/projects/transpresto/dashboard.png",
       alt: "Aperçu Transpresto",
     },
-    tech: ["Next.js", "React", "TypeScript", "Tailwind", "AWS", "DynamoDB", "OpenSearch"],
+    tech: ["Next.js", "React", "TypeScript", "Bootstrap", "AWS", "DynamoDB", "Lambda", "Node.js", "API Gateway"],
     links: [
-      { label: "Case Study", href: "/#projects" },
+      { label: "Case Study", href: "/" },
+      { label: "GitHub", href: "/#projects" },
     ],
     highlights: [
       { label: "Focus", value: "KPIs transport" },
@@ -42,7 +43,7 @@ export const PROJECTS: Project[] = [
       src: "/projects/guild/cover.png",
       alt: "Aperçu Guild CRM",
     },
-    tech: ["Next.js", "React", "TypeScript", "Tailwind", "AWS", "Stripe"],
+    tech: ["Next.js", "React", "TypeScript", "Tailwind", "AWS", "Stripe", "DynamoDB", "Lambda", "Node.js", "API Gateway", "OpenSearch"],
     links: [
       { label: "Case Study", href: "/#projects" },
     ],
@@ -57,9 +58,10 @@ export const PROJECTS: Project[] = [
       src: "/projects/vlille/cover.png",
       alt: "Aperçu V’Lille",
     },
-    tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+    tech: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
     links: [
-      { label: "GitHub", href: "https://github.com/" },
+      { label: "GitHub", href: "https://github.com/h18319/vlille-app" },
+      { label: "Live", href: "https://vlille.hornain.dev/" },
     ],
     year: 2025,
   },

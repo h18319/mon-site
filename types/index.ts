@@ -3,6 +3,7 @@ export type TechTag =
   | "React"
   | "TypeScript"
   | "Tailwind"
+  | "Bootstrap"
   | "Framer Motion"
   | "Node.js"
   | "AWS"
@@ -12,6 +13,8 @@ export type TechTag =
   | "PostgreSQL"
   | "Prisma"
   | "Docker"
+  | "Lambda"
+  | "API Gateway"
   | "n8n";
 
 export type ProjectCategory =

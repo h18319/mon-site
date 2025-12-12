@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
+import { PageShell } from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
   title: "Imane Hornain",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        <PageShell>{children}</PageShell>
+      </body>
     </html>
   );
 }
