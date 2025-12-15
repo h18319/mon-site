@@ -1,4 +1,5 @@
 import { Container } from "./Container";
+import Link from "next/link";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -10,18 +11,18 @@ export function Footer() {
           © {year} Imane. Tous droits réservés.
         </div>
         <div className="flex items-center gap-3 text-xs">
-          <a className="text-white/50 hover:text-white transition" href="#projects">
+          <Link className="text-white/50 hover:text-white transition" href="/#projects">
             Projets
-          </a>
-          <a className="text-white/50 hover:text-white transition" href="#stack">
+          </Link>
+          <Link className="text-white/50 hover:text-white transition" href="/#stack">
             Stack
-          </a>
-          <a className="text-white/50 hover:text-white transition" href="#experience">
+          </Link>
+          <Link className="text-white/50 hover:text-white transition" href="/#experience">
             Parcours
-          </a>
-          <a className="text-white/50 hover:text-white transition" href="#contact">
+          </Link>
+          <Link className="text-white/50 hover:text-white transition" href="/#contact">
             Contact
-          </a>
+          </Link>
         </div>
       </Container>
     </footer>

@@ -34,8 +34,8 @@ export function Contact() {
           <div className="card p-6">
             <div className="text-sm font-medium">Ce que je recherche</div>
             <ul className="mt-3 grid gap-1 text-xs text-white/70">
-              <li>• Environnements orientés produit</li>
-              <li>• Next.js / TypeScript / UI de qualité</li>
+              <li>• Produits avec vision long terme et vraie culture UX</li>
+              <li>• Contextes où je peux monter en compétence sur des stacks modernes</li>
               <li>• Équipes bienveillantes et exigeantes</li>
             </ul>
           </div>

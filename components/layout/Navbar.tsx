@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 const NAV = [
-  { label: "Projets", href: "#projects" },
-  { label: "Stack", href: "#stack" },
-  { label: "Parcours", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projets", href: "/#projects" },
+  { label: "Stack", href: "/#stack" },
+  { label: "Parcours", href: "/#experience" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Navbar() {
@@ -38,7 +39,7 @@ export function Navbar() {
           )}
         >
           {/* Brand */}
-          <a href="#" className="flex items-center gap-2 px-2">
+          <Link href="/" className="flex items-center gap-2 px-2">
             <span className="h-2 w-2 rounded-full bg-white/60" />
             <span className="text-sm font-semibold tracking-wide">
               Imane
@@ -46,28 +47,28 @@ export function Navbar() {
             <span className="text-xs text-white/40 hidden sm:inline">
               Portfolio
             </span>
-          </a>
+          </Link>
 
           {/* Links */}
           <div className="hidden md:flex items-center gap-1">
             {NAV.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="rounded-full px-3 py-1.5 text-xs text-white/70 hover:text-white
                            hover:bg-white/5 transition"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* CTA */}
           <div className="flex items-center gap-2">
-            <Button href="#projects" className="hidden sm:inline-flex">
+            <Button href="/#projects" className="hidden sm:inline-flex">
               Explorer
             </Button>
-            <Button variant="accent" href="#contact">
+            <Button variant="accent" href="/#contact">
               Me contacter
             </Button>
           </div>
