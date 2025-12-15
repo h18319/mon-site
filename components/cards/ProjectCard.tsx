@@ -35,13 +35,13 @@ export function ProjectCard({ project }: Props) {
       )}
     >
       {/* Cover */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40">
+      <div className="relative overflow-hidden border border-white/5 bg-black/40">
         <div className="relative aspect-video">
           <Image
             src={project.cover.src}
             alt={project.cover.alt}
             fill
-            className="object-cover transition duration-500 group-hover:scale-[1.04] group-hover:brightness-[1.05]"
+            className="object-cover transition duration-500 group-hover:brightness-[1.05]"
             sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
           />
         </div>

@@ -11,7 +11,7 @@ const CATEGORIES = [
   { key: "Frontend", label: "Frontend" },
   { key: "Backend", label: "Backend" },
   { key: "DevOps", label: "DevOps" },
-  { key: "Others", label: "Others" },
+  { key: "Others", label: "Autres" },
 ] as const;
 
 export function Stack() {
