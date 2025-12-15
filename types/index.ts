@@ -15,6 +15,8 @@ export type TechTag =
   | "Docker"
   | "Lambda"
   | "API Gateway"
+  | "PHP"
+  | "JavaScript"
   | "n8n";
 
 export type ProjectCategory =
