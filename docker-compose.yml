@@ -1,0 +1,7 @@
+services:
+  portfolio:
+    build: .
+    ports:
+      - "3100:3000"   # 3100 sur le VPS → 3000 dans le container
+    environment:
+      - NODE_ENV=production
