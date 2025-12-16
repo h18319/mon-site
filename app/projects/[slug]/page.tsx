@@ -22,7 +22,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <Container className="pt-28 pb-16">
+    <Container className="lg:pt-28 md:pt-14 pt-2 pb-16">
       {/* Back link */}
       <div className="mb-6 text-xs text-white/60">
         <Link href="/" className="hover:text-white">
